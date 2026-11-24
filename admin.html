@@ -1,35 +1,35 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f7f4ec">
-<title>Admin Studio — Thoughts & Stories</title>
+<title>Admin Studio | Thoughts & Stories</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script defer src="script.js"></script>
 <style>
-.admin-workspace{width:100%}
 .admin-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px}
 .admin-sidebar{display:flex;flex-direction:column;gap:7px}
 .admin-tab{text-align:left;padding:12px;border:0;border-radius:9px;background:transparent;cursor:pointer;font:inherit}
 .admin-tab.active{background:#29251f;color:white}
+.admin-section[hidden]{display:none!important}
 .admin-panel-wide{min-width:0}
-.admin-section{animation:fadeIn .2s ease}
-@keyframes fadeIn{from{opacity:.5}to{opacity:1}}
-.studio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin:22px 0}
-.studio-card{border:1px solid #ded7cc;border-radius:13px;padding:13px;background:#fffaf2;color:#29251f}
-.studio-swatch{height:95px;border-radius:9px;margin-bottom:12px}
-.studio-card button{width:100%;margin-top:9px}
-.studio-toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.studio-note{font-size:13px;line-height:1.6;color:#777}
-.studio-cover{width:100%;height:120px;object-fit:cover;border-radius:9px}
-.studio-feature{padding:18px;border:1px solid #ded7cc;border-radius:12px;margin:14px 0}
-.studio-placeholder{padding:25px;background:#f4efe5;border-radius:10px;margin:12px 0}
-.studio-feature input,.studio-feature select,.studio-feature textarea{max-width:100%}
+.studio-grid,.reader-setting-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:20px 0}
+.studio-card,.studio-feature{border:1px solid #ded7cc;border-radius:12px;padding:16px;background:#fffaf2;color:#29251f}
+.studio-card button{margin-top:10px}
+.studio-swatch{height:75px;border-radius:8px;margin-bottom:10px}
+.admin-item{padding:15px;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.admin-item-block{display:block}
+.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.admin-list{margin:15px 0}
+.admin-form label{display:block;margin:12px 0}
+.admin-form input:not([type=checkbox]),.admin-form textarea,.admin-form select{width:100%;max-width:100%}
+.form-note,.studio-note{font-size:13px;line-height:1.6;color:#777}
+.reader-setting-grid label{display:grid;gap:7px}
+.admin-section h2{margin-bottom:12px}
 @media(max-width:760px){
 .admin-layout{grid-template-columns:1fr}
 .admin-sidebar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -37,9 +37,14 @@
 }
 </style>
 </head>
+
 <body>
+
 <header class="site-header">
-<a class="brand" href="index.html"><span class="brand-mark">T.</span><span>thoughts<span class="brand-amp">&</span>stories</span></a>
+<a class="brand" href="index.html">
+<span class="brand-mark">T.</span>
+<span>thoughts<span class="brand-amp">&</span>stories</span>
+</a>
 <div class="header-actions">
 <a class="button button-outline button-small" href="index.html">View website</a>
 <button class="button button-dark button-small" id="admin-signout" hidden>Sign out</button>
@@ -47,19 +52,23 @@
 </header>
 
 <main class="dashboard-wrap" id="admin-root">
+
 <div class="dashboard-head">
-<div><p class="eyebrow">PRIVATE PUBLISHING SPACE</p><h1>Admin studio</h1><p class="hero-intro">Your stories, readers and publishing activity in one place.</p></div>
+<div>
+<p class="eyebrow">PRIVATE PUBLISHING SPACE</p>
+<h1>Admin Studio</h1>
+<p class="hero-intro">Your stories, readers and publishing activity in one place.</p>
+</div>
 <div id="admin-email"></div>
 </div>
 
 <div id="admin-login" class="admin-panel" hidden>
 <h2>Administrator sign in</h2>
-<p>Sign in with your existing account. Only verified administrators can enter.</p>
 <form id="admin-login-form" class="admin-form">
-<label>Email address<input id="admin-login-email" type="email" required autocomplete="username"></label>
-<label>Password<input id="admin-login-password" type="password" required autocomplete="current-password"></label>
+<label>Email address<input id="admin-login-email" type="email" required></label>
+<label>Password<input id="admin-login-password" type="password" required></label>
 <button class="button button-dark" type="submit">Sign in securely</button>
-<p class="admin-status" id="admin-login-status" role="status"></p>
+<p id="admin-login-status" class="admin-status" role="status"></p>
 </form>
 </div>
 
@@ -71,7 +80,8 @@
 
 <div id="admin-workspace" hidden>
 <div class="admin-layout">
-<nav class="admin-sidebar" aria-label="Admin sections">
+
+<nav class="admin-sidebar" aria-label="Admin navigation">
 <button class="admin-tab active" data-section="overview">Overview</button>
 <button class="admin-tab" data-section="design">Design Studio</button>
 <button class="admin-tab" data-section="publishing">Publishing Centre</button>
@@ -91,6 +101,7 @@
 
 <div class="admin-panel admin-panel-wide">
 
+<!-- OVERVIEW -->
 <section class="admin-section" id="section-overview">
 <p class="eyebrow">YOUR PUBLISHING DESK</p>
 <h2>Welcome to your studio.</h2>
@@ -100,188 +111,248 @@
 <article class="stat-card"><span>Comments</span><strong id="stat-comments">—</strong></article>
 <article class="stat-card"><span>Visits</span><strong id="stat-visits">—</strong></article>
 </div>
-<p class="form-note" id="overview-status">Your publishing overview.</p>
+<p id="overview-status" class="form-note"></p>
 <div class="admin-actions">
 <button class="button button-dark" data-jump="articles">Write an article</button>
-<button class="button button-outline" data-jump="publishing">Publish a book</button>
+<button class="button button-outline" data-jump="books">Publish a book</button>
+<button class="button button-outline" data-jump="magazines">Create magazine</button>
 </div>
 </section>
 
+<!-- DESIGN -->
 <section class="admin-section" id="section-design" hidden>
 <p class="eyebrow">CREATIVE CONTROL CENTRE</p>
 <h2>Design Studio</h2>
-<p>Choose from 13 visual directions for your platform.</p>
-<p class="studio-note">Preview a design before saving. These first-stage presets affect the administrator preview only. Public website-wide publishing requires the global appearance settings to be connected to the database.</p>
-<div class="studio-toolbar">
-<button class="button button-outline" id="design-reset" type="button">Restore default preview</button>
+<p>Choose a visual direction for your website.</p>
+<div class="admin-actions">
+<button class="button button-outline" id="design-reset" type="button">Restore preview</button>
 </div>
 <div class="studio-grid" id="design-grid"></div>
-<p class="admin-status" id="design-status" role="status"></p>
+<p id="design-status" class="admin-status" role="status"></p>
 <div class="studio-feature">
-<h3>Wallpaper controls</h3>
-<label>Upload a preview wallpaper<input id="design-wallpaper" type="file" accept="image/*"></label>
-<label>Preview brightness<input id="design-brightness" type="range" min="30" max="100" value="100"></label>
-<p class="studio-note">Wallpaper selection is a local preview. It does not replace the public website background.</p>
+<h3>Wallpaper preview</h3>
+<label>Upload wallpaper<input id="design-wallpaper" type="file" accept="image/*"></label>
+<label>Brightness<input id="design-brightness" type="range" min="30" max="100" value="100"></label>
 </div>
 </section>
 
+<!-- PUBLISHING CENTRE -->
 <section class="admin-section" id="section-publishing" hidden>
 <p class="eyebrow">BOOK PUBLISHING CENTRE</p>
-<h2>Publish a book</h2>
-<p>Manage titles, descriptions, covers, prices and availability.</p>
+<h2>Publishing Centre</h2>
+<p>Manage your books, covers, manuscripts and publication status.</p>
 <div class="studio-feature">
-<h3>Publishing workspace</h3>
-<button class="button button-dark" type="button" data-jump="books">Open existing bookshelf manager</button>
-<p class="studio-note">The existing Bookshelf form below remains connected to the site's current book publishing functions. Use it to upload and publish books.</p>
+<h3>Book publishing</h3>
+<p>Upload PDF books, add descriptions and covers, set free or paid access, and publish titles to BookZone.</p>
+<button class="button button-dark" data-jump="books">Open book publishing form</button>
 </div>
 <div class="studio-feature">
-<h3>Publishing checklist</h3>
-<ul>
-<li>Book title and author</li>
-<li>Book description and category</li>
-<li>Cover image</li>
-<li>PDF upload</li>
-<li>Free or paid availability</li>
-<li>Price and currency</li>
-<li>Publication visibility</li>
-</ul>
-<p class="studio-note">EPUB uploads, scheduling and additional currency options need database and publishing-script support before they can be activated.</p>
+<h3>Magazine publishing</h3>
+<p>Create magazine issues and publish them for online readers.</p>
+<button class="button button-outline" data-jump="magazines">Open magazine publisher</button>
 </div>
 </section>
 
+<!-- ARTICLES -->
 <section class="admin-section" id="section-articles" hidden>
-<h2>Articles</h2>
+<h2>Article editor</h2>
 <form class="admin-form" id="article-form">
 <input type="hidden" id="article-id">
 <label>Title<input id="article-title" required></label>
 <label>URL slug<input id="article-slug"></label>
-<label>Article category<select id="article-category" required><option value="" disabled selected>Choose category</option><option value="Creativity">Creativity</option><option value="Life">Life</option><option value="Learning">Learning</option></select></label>
+<label>Category
+<select id="article-category" required>
+<option value="" disabled selected>Choose category</option>
+<option>Creativity</option>
+<option>Life</option>
+<option>Learning</option>
+</select>
+</label>
 <label>Short introduction<textarea id="article-excerpt"></textarea></label>
 <label>Article content<textarea id="article-content" rows="10" required></textarea></label>
-<label>Cover image URL<input id="article-cover" type="url" placeholder="https://..."></label>
-<label class="checkline"><input id="article-published" type="checkbox"> Publish immediately</label>
-<div class="admin-actions"><button class="button button-dark" type="submit">Save article</button><button class="button button-outline" type="button" id="article-reset">Clear form</button></div>
+<label>Cover image URL<input id="article-cover" type="url"></label>
+<label><input id="article-published" type="checkbox"> Publish immediately</label>
+<div class="admin-actions">
+<button class="button button-dark" type="submit">Save article</button>
+<button class="button button-outline" type="button" id="article-reset">Clear form</button>
+</div>
 <p class="admin-status" id="article-status" role="status"></p>
 </form>
-<h2>Your articles</h2><div class="admin-list" id="article-list"></div>
+<h2>Your articles</h2>
+<div class="admin-list" id="article-list"></div>
 </section>
 
+<!-- MAGAZINES -->
 <section class="admin-section" id="section-magazines" hidden>
 <p class="eyebrow">EDITORIAL PUBLICATIONS</p>
-<h2>Magazine Manager</h2>
-<p>Prepare magazine issues and editorial collections.</p>
-<div class="studio-feature">
-<h3>Magazine publishing</h3>
-<button class="button button-dark" type="button" data-jump="articles">Manage editorial content</button>
-<p class="studio-note">The magazine layout and issue database are not yet connected. This section is a management entry point, not a live magazine publishing form.</p>
+<h2>Magazine Publishing Centre</h2>
+<p>Create, edit and publish magazine issues.</p>
+
+<form class="admin-form" id="magazine-form">
+<input type="hidden" id="magazine-id">
+<label>Issue title<input id="magazine-title" required maxlength="180" placeholder="Magazine issue title"></label>
+<label>Description<textarea id="magazine-description" rows="4"></textarea></label>
+<label>Category<input id="magazine-category" placeholder="Culture, fiction, lifestyle..."></label>
+<label>Cover image URL<input id="magazine-cover" type="url" placeholder="https://..."></label>
+<label>Magazine PDF or reading URL<input id="magazine-content" type="url" required placeholder="https://..."></label>
+<label><input id="magazine-published" type="checkbox"> Publish this issue</label>
+<div class="admin-actions">
+<button class="button button-dark" type="submit">Save magazine issue</button>
+<button class="button button-outline" id="magazine-reset" type="button">Clear form</button>
 </div>
+<p id="magazine-status" class="admin-status" role="status"></p>
+</form>
+
+<h3>Magazine issues</h3>
+<div class="admin-list" id="magazine-list"></div>
 </section>
 
+<!-- READER -->
 <section class="admin-section" id="section-reader" hidden>
 <p class="eyebrow">READING EXPERIENCE</p>
-<h2>Online Reader Manager</h2>
-<p>Plan the reading experience for books, articles and magazines.</p>
+<h2>Online Reader Settings</h2>
+<p>Configure default reading preferences for the platform.</p>
+
+<form class="admin-form" id="reader-settings-form">
+<div class="reader-setting-grid">
+<label>Default theme
+<select id="reader-theme">
+<option value="light">Light</option>
+<option value="dark">Dark</option>
+<option value="sepia">Sepia</option>
+<option value="midnight">Midnight</option>
+<option value="ocean">Ocean</option>
+</select>
+</label>
+<label>Default font
+<select id="reader-font">
+<option value="Georgia">Georgia</option>
+<option value="Arial">Arial</option>
+<option value="Verdana">Verdana</option>
+<option value="system-ui">System</option>
+</select>
+</label>
+<label>Default font size
+<select id="reader-font-size">
+<option value="16">Small</option>
+<option value="18" selected>Normal</option>
+<option value="20">Large</option>
+<option value="22">Extra large</option>
+</select>
+</label>
+<label>Background colour<input id="reader-background" type="color" value="#f7f4ec"></label>
+</div>
+<label>Reader wallpaper URL<input id="reader-wallpaper" type="url" placeholder="https://..."></label>
+<button class="button button-dark" type="submit">Save reader settings</button>
+<p id="reader-status" class="admin-status" role="status"></p>
+</form>
+
 <div class="studio-feature">
-<h3>Reader features to configure</h3>
+<h3>Reader features</h3>
 <ul>
-<li>Light, dark and sepia reading themes</li>
-<li>Font size and reading typography</li>
+<li>Personal reading themes</li>
+<li>Adjustable typography and font size</li>
 <li>Bookmarks and reading progress</li>
 <li>Continue reading</li>
 <li>Full-screen reading</li>
-<li>Member library and purchased books</li>
+<li>Secure purchased-book access</li>
 </ul>
-<p class="studio-note">Reader controls require integration with the book reader and member preferences before they can control the live reader.</p>
 </div>
 </section>
 
+<!-- GAMING -->
 <section class="admin-section" id="section-gaming" hidden>
 <p class="eyebrow">PLAY · LEARN · DISCOVER</p>
-<h2>Gaming Zone Manager</h2>
-<p>Manage the games and experiences offered to your readers.</p>
-<div class="studio-grid">
-<div class="studio-card"><strong>Snake Rush</strong><p>Arcade game</p></div>
-<div class="studio-card"><strong>Fruit Slice</strong><p>Arcade game</p></div>
-<div class="studio-card"><strong>Jewel Match</strong><p>Puzzle game</p></div>
-<div class="studio-card"><strong>Block Puzzle</strong><p>Logic game</p></div>
-<div class="studio-card"><strong>Bubble Shooter</strong><p>Arcade game</p></div>
-<div class="studio-card"><strong>Word Search</strong><p>Planned</p></div>
-<div class="studio-card"><strong>Crossword</strong><p>Planned</p></div>
-<div class="studio-card"><strong>Sudoku</strong><p>Planned</p></div>
-<div class="studio-card"><strong>Trivia Quiz</strong><p>Planned</p></div>
-<div class="studio-card"><strong>Memory Match</strong><p>Planned</p></div>
-</div>
-<p class="studio-note">Your existing GameZone games remain in the main website. This manager is a catalogue preview; game activation, scores and leaderboards need their own database integration.</p>
-<a href="index.html#game-zone" class="button button-outline">View website</a>
+<h2>Gaming Zone</h2>
+<p>Manage the games available to readers.</p>
+<div class="admin-list" id="game-admin-list"></div>
+<p id="game-admin-status" class="admin-status" role="status"></p>
+<a class="button button-outline" href="index.html">Preview website</a>
 </section>
 
+<!-- COMMENTS -->
 <section class="admin-section" id="section-comments" hidden>
-<h2>Reader comments</h2>
-<p class="form-note">Approve comments, reply to readers or remove inappropriate comments.</p>
+<h2>Reader Comments</h2>
+<p class="form-note">Approve, hide, reply to or delete reader comments.</p>
 <div class="admin-list" id="comment-list"></div>
-<p class="admin-status" id="comment-status" role="status"></p>
+<p id="comment-status" class="admin-status" role="status"></p>
 </section>
 
+<!-- BOOKS -->
 <section class="admin-section" id="section-books" hidden>
-<h2>Bookshelf</h2>
+<h2>Book Publishing Manager</h2>
 <form class="admin-form" id="book-form">
 <input type="hidden" id="book-id">
 <label>Book title<input id="book-title" required></label>
 <label>Author<input id="book-author"></label>
 <label>Description<textarea id="book-description"></textarea></label>
-<label>Cover image URL<input id="book-cover" type="url" placeholder="Public cover image URL"><span class="form-note">The cover preview appears automatically below.</span><div id="book-cover-preview" class="book-cover-preview" hidden></div></label>
-<label>Upload book PDF<input id="book-pdf-file" type="file" accept="application/pdf,.pdf"><span class="form-note">PDFs are stored privately. Paid books must have a PDF uploaded here.</span></label>
+<label>Cover image URL<input id="book-cover" type="url"></label>
+<div id="book-cover-preview" hidden></div>
+<label>Upload book PDF<input id="book-pdf-file" type="file" accept="application/pdf,.pdf"></label>
 <input type="hidden" id="book-pdf-path">
-<label>Free book public reading URL (optional)<input id="book-url" type="url"></label>
-<label>Book availability<select id="book-access-type"><option value="free">Free online book</option><option value="purchase">Available to purchase</option></select></label>
-<label>Price (KSh)<input id="book-price" type="number" min="1" step="1" placeholder="e.g. 500"></label>
-<p class="form-note">Paid book checkout is handled by the existing M-Pesa payment integration. Members retain access after confirmed payment.</p>
+<label>Free book reading URL<input id="book-url" type="url"></label>
+<label>Book access
+<select id="book-access-type">
+<option value="free">Free online book</option>
+<option value="purchase">Paid book</option>
+</select>
+</label>
+<label>Price in KSh<input id="book-price" type="number" min="1" step="1"></label>
 <label>Your review<textarea id="book-review"></textarea></label>
 <label>Rating (0–5)<input id="book-rating" type="number" min="0" max="5" step=".1"></label>
-<label class="checkline"><input id="book-published" type="checkbox" checked> Visible on website</label>
-<div class="admin-actions"><button class="button button-dark" type="submit">Save book</button><button class="button button-outline" type="button" id="book-reset">Clear form</button></div>
-<p class="admin-status" id="book-status" role="status"></p>
+<label><input id="book-published" type="checkbox" checked> Visible on website</label>
+<div class="admin-actions">
+<button class="button button-dark" type="submit">Save book</button>
+<button class="button button-outline" type="button" id="book-reset">Clear form</button>
+</div>
+<p id="book-status" class="admin-status" role="status"></p>
 </form>
-<h2>Existing books</h2><div class="admin-list" id="book-list"></div>
+<h2>Existing books</h2>
+<div class="admin-list" id="book-list"></div>
 </section>
 
+<!-- VIDEOS -->
 <section class="admin-section" id="section-videos" hidden>
-<h2>Watch &amp; Listen — Video station</h2>
-<p class="form-note">Add YouTube videos or upload short videos.</p>
+<h2>Video Station</h2>
 <form class="admin-form" id="video-form">
-<label>Video title<input id="video-title" required maxlength="160"></label>
-<label>Short description<textarea id="video-description" maxlength="1000"></textarea></label>
+<label>Video title<input id="video-title" required></label>
+<label>Description<textarea id="video-description"></textarea></label>
 <label>Upload video<input id="video-file" type="file" accept="video/mp4,video/webm,video/quicktime"></label>
 <label>YouTube video URL<input id="video-url" type="url"></label>
-<label>Thumbnail image URL<input id="video-thumbnail" type="url"></label>
-<label class="checkline"><input id="video-published" type="checkbox" checked> Publish video</label>
-<button class="button button-dark" type="submit">Publish video</button>
-<p class="admin-status" id="video-status" role="status"></p>
+<label>Thumbnail URL<input id="video-thumbnail" type="url"></label>
+<label><input id="video-published" type="checkbox" checked> Publish video</label>
+<button class="button button-dark" type="submit">Save video</button>
+<p id="video-status" class="admin-status" role="status"></p>
 </form>
-<h3>Published videos</h3><div class="admin-list" id="admin-video-list"></div>
+<h3>Published videos</h3>
+<div class="admin-list" id="admin-video-list"></div>
 </section>
 
+<!-- GALLERY -->
 <section class="admin-section" id="section-gallery" hidden>
-<h2>Photo gallery</h2>
+<h2>Photo Gallery</h2>
 <form class="admin-form" id="gallery-form">
 <label>Choose picture<input id="gallery-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" required></label>
 <label>Caption<input id="gallery-caption" maxlength="180"></label>
-<label class="checkline"><input id="gallery-published" type="checkbox" checked> Show publicly</label>
+<label><input id="gallery-published" type="checkbox" checked> Show publicly</label>
 <button class="button button-dark" type="submit">Upload picture</button>
-<p class="admin-status" id="gallery-status" role="status"></p>
+<p id="gallery-status" class="admin-status" role="status"></p>
 </form>
-<h3>Uploaded pictures</h3><div class="gallery-grid" id="admin-gallery-grid"></div>
+<h3>Uploaded pictures</h3>
+<div class="gallery-grid" id="admin-gallery-grid"></div>
 </section>
 
+<!-- MEMBERS -->
 <section class="admin-section" id="section-members" hidden>
-<h2>Community members</h2>
-<p class="form-note">Member names, email addresses and registration dates. Passwords are never visible.</p>
+<h2>Community Members</h2>
+<p class="form-note">Registered member accounts.</p>
 <div class="admin-list" id="member-list"></div>
-<p class="admin-status" id="member-status" role="status"></p>
+<p id="member-status" class="admin-status" role="status"></p>
 </section>
 
+<!-- PROFILE -->
 <section class="admin-section" id="section-profile" hidden>
-<h2>Author profile</h2>
+<h2>Author Profile</h2>
 <form class="admin-form" id="profile-form">
 <label>Display name<input id="profile-name"></label>
 <label>Bio<textarea id="profile-bio"></textarea></label>
@@ -289,28 +360,29 @@
 <label>Phone<input id="profile-phone"></label>
 <label>WhatsApp number<input id="profile-whatsapp"></label>
 <button class="button button-dark" type="submit">Save profile</button>
-<p class="admin-status" id="profile-status" role="status"></p>
+<p id="profile-status" class="admin-status" role="status"></p>
 </form>
 </section>
 
+<!-- DONATIONS -->
 <section class="admin-section" id="section-donations" hidden>
-<h2>Support the writing</h2>
+<h2>Support the Writing</h2>
 <form class="admin-form" id="donation-form">
-<label class="checkline"><input id="donation-enabled" type="checkbox"> Show donation page</label>
+<label><input id="donation-enabled" type="checkbox"> Show donation page</label>
 <label>Page title<input id="donation-title"></label>
 <label>Message<textarea id="donation-message"></textarea></label>
 <label>M-Pesa Paybill or Till<input id="donation-paybill"></label>
 <label>Secure payment link<input id="donation-link" type="url"></label>
 <button class="button button-dark" type="submit">Save support settings</button>
-<p class="admin-status" id="donation-status" role="status"></p>
+<p id="donation-status" class="admin-status" role="status"></p>
 <a href="donate.html" target="_blank" rel="noopener">Preview support page</a>
 </form>
 </section>
 
+<!-- ANALYTICS -->
 <section class="admin-section analytics-section" id="section-analytics" hidden>
 <p class="eyebrow">THE PULSE OF YOUR PLATFORM</p>
-<h2>Website analytics</h2>
-<p class="form-note">Anonymous visitor activity and publishing statistics.</p>
+<h2>Website Analytics</h2>
 <div class="stats-grid">
 <article class="stat-card"><span>All-time views</span><strong id="analytics-total">—</strong></article>
 <article class="stat-card"><span>Unique sessions</span><strong id="analytics-unique">—</strong></article>
@@ -327,7 +399,7 @@
 <article class="analytics-card"><h3>Engagement snapshot</h3><div id="analytics-engagement"></div></article>
 <article class="analytics-card"><h3>Latest recorded visits</h3><div id="analytics-recent"></div></article>
 </div>
-<p class="admin-status" id="analytics-status" role="status"></p>
+<p id="analytics-status" class="admin-status" role="status"></p>
 </section>
 
 </div>
@@ -341,19 +413,7 @@
 </footer>
 
 <script>
-/* Add navigation for the new sections while preserving existing admin scripts. */
 document.addEventListener('DOMContentLoaded',()=>{
-const nav=document.querySelector('.admin-sidebar');
-const sections=document.querySelectorAll('.admin-section');
-function activate(name){
-document.querySelectorAll('.admin-tab').forEach(b=>b.classList.toggle('active',b.dataset.section===name));
-sections.forEach(s=>s.hidden=s.id!=='section-'+name);
-}
-nav?.addEventListener('click',e=>{
-const b=e.target.closest('.admin-tab');
-if(b)activate(b.dataset.section);
-});
-document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.jump)));
 const designs=[
 ['Classic Editorial','#f7f4ec','#29251f'],
 ['Midnight Luxe','#171923','#eee5d8'],
@@ -369,6 +429,42 @@ const designs=[
 ['Arctic Silver','#edf1f5','#344454'],
 ['African Earth','#ead9c5','#533a2a']
 ];
+
 const grid=document.getElementById('design-grid');
-const status=document.getElementById('design-status');
-let original={background:document.body.style.backgroundColor,color:document.body.sty
+if(grid){
+grid.innerHTML=designs.map((d,i)=>`
+<article class="studio-card">
+<div class="studio-swatch" style="background:${d[1]}"></div>
+<strong>${d[0]}</strong>
+<button class="button button-outline" type="button" data-design="${i}">Preview</button>
+</article>`).join('');
+
+grid.addEventListener('click',e=>{
+const b=e.target.closest('[data-design]');
+if(!b)return;
+const d=designs[Number(b.dataset.design)];
+document.body.style.backgroundColor=d[1];
+document.body.style.color=d[2];
+document.getElementById('design-status').textContent=d[0]+' preview selected.';
+});
+}
+
+document.getElementById('design-reset')?.addEventListener('click',()=>{
+document.body.style.backgroundColor='';
+document.body.style.color='';
+document.body.style.backgroundImage='';
+document.body.style.filter='';
+document.getElementById('design-status').textContent='Preview restored.';
+});
+
+document.getElementById('design-wallpaper')?.addEventListener('change',e=>{
+const file=e.target.files?.[0];
+if(file){
+const url=URL.createObjectURL(file);
+document.body.style.backgroundImage='url("'+url+'")';
+document.body.style.backgroundSize='cover';
+}
+});
+
+document.getElementById('design-brightness')?.addEventListener('input',e=>{
+document.body.style.filter='brightness('+Number(e.target.value
