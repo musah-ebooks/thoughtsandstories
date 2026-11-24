@@ -1,0 +1,80 @@
+THOUGHTS & STORIES — ARTICLES, BOOKZONE PAYMENTS & MEMBERS
+
+WHAT THIS UPGRADE DOES
+- Article category is now a required dropdown: Creativity, Life or Learning.
+- Book cover URL displays an automatic preview in Admin Studio and the uploaded cover appears on the public book card/detail page.
+- Book PDFs can be uploaded directly from your phone. PDFs are stored in a PRIVATE Supabase Storage bucket.
+- Free books can be opened by signed-in members. Paid books require a confirmed M-Pesa payment before a PDF link is issued.
+- A successful purchase stays recorded against the member's account. The server generates a fresh, temporary reading/download link whenever that member returns, so they do not pay again.
+- The member registration trigger is installed again and existing Auth users are backfilled into public.profiles for the Admin Studio Members list.
+
+IMPORTANT: M-PESA IS NOT LIVE UNTIL CREDENTIALS ARE ADDED
+The code is ready for Safaricom Daraja STK Push, but I cannot activate or test a real payment without your Daraja merchant credentials. Never paste these secrets into chat or put them in script.js.
+
+STEP 1 — RUN THE DATABASE MIGRATION
+1. Open the Supabase project connected to Thoughts & Stories.
+2. Open SQL Editor and create a new query.
+3. Copy and run the complete file: bookzone-mpesa-members-setup.sql
+4. Wait for the success message.
+
+This creates the purchase ledger, private PDF bucket and member registration/backfill trigger. It does not delete articles or member accounts. It removes the old direct PDF URL from rows marked as paid so the website cannot continue showing those old public links. You must re-upload each paid book's PDF from Admin Studio > Books.
+
+STEP 2 — ADD THE SERVER ENVIRONMENT VARIABLES IN NETLIFY
+Open the Netlify site dashboard, then Site configuration > Environment variables. Add these variables (server-side only):
+
+SUPABASE_URL = https://ocufkqfbaffknhtyxqna.supabase.co
+SUPABASE_ANON_KEY = the same Supabase publishable key already used by the website
+SUPABASE_SERVICE_ROLE_KEY = the Supabase server secret/service-role key (NEVER add this to script.js)
+MPESA_ENVIRONMENT = sandbox
+MPESA_CONSUMER_KEY = your Daraja app consumer key
+MPESA_CONSUMER_SECRET = your Daraja app consumer secret
+MPESA_SHORTCODE = your Safaricom Paybill or Till shortcode
+MPESA_PASSKEY = your Lipa Na M-Pesa Online passkey
+MPESA_TRANSACTION_TYPE = CustomerPayBillOnline (Paybill) OR CustomerBuyGoodsOnline (Till)
+MPESA_CALLBACK_URL = https://thoughtsandstories.netlify.app/.netlify/functions/mpesa-book-callback
+
+Use the exact credentials supplied for your Daraja app/merchant. Start with sandbox credentials and a sandbox shortcode for testing. To accept real customer payments, Safaricom must enable your production shortcode and production Daraja credentials; then change MPESA_ENVIRONMENT to production.
+
+STEP 3 — DEPLOY THIS WEBSITE PACKAGE
+1. Download and extract the ZIP.
+2. Upload the extracted package contents to your existing Netlify site and deploy.
+3. Confirm the Netlify deploy includes the netlify/functions folder and netlify.toml.
+4. After setting or changing environment variables, trigger a fresh deploy so the functions receive them.
+
+STEP 4 — POST ARTICLES
+Admin Studio > Articles > choose the category dropdown (Creativity, Life or Learning), complete the title and content, then Save article. The category is required so the public filters can find the story.
+
+STEP 5 — POST BOOKS
+Admin Studio > Books:
+- Enter the book title, author and description.
+- Paste the cover image URL. Its preview appears automatically.
+- Upload the actual PDF file. Maximum size: 50 MB.
+- Choose Free online book or Available to purchase.
+- For paid books, enter a whole-number price in KSh. Uploading a PDF is mandatory.
+- Save the book.
+
+For free books, you may use the uploaded PDF or a public reading URL. For paid books, use the private PDF upload only. Do not paste a public PDF URL for a paid title.
+
+HOW PURCHASES WORK
+1. A reader signs in and opens a paid title.
+2. The reader enters a Safaricom phone number.
+3. The server sends an STK Push request to that phone.
+4. Safaricom's callback and STK Query are checked before the purchase is marked paid.
+5. Only after verification does the server issue a short-lived signed PDF link.
+6. The member can return later and open/download the book again without paying again.
+
+SECURITY NOTES
+- Supabase service-role key and Daraja secrets are used only by Netlify Functions.
+- The paid-books bucket remains private; there is no public PDF URL.
+- The browser cannot insert or mark a purchase as paid.
+- M-Pesa callback alone is not trusted: the server also queries Safaricom before granting access.
+- Signed PDF links expire after one hour; the paid purchase record does not expire. The site can issue a fresh link after checking ownership.
+- A PDF that was previously hosted on a public external URL may remain accessible to anyone who already has that old URL. Remove/restrict the old external copy after uploading the private PDF.
+
+FILES
+- bookzone-mpesa-members-setup.sql — run in Supabase SQL Editor.
+- netlify/functions/create-book-payment.mjs — starts M-Pesa STK Push.
+- netlify/functions/mpesa-book-callback.mjs — receives Safaricom callback and verifies the transaction.
+- netlify/functions/book-access.mjs — checks ownership and issues signed PDF URLs.
+- netlify/functions/_shared.mjs — server-only helper functions.
+- netlify.toml — Netlify Functions configuration.

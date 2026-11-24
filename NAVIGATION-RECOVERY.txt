@@ -1,0 +1,9 @@
+THOUGHTS & STORIES — NAVIGATION RECOVERY
+
+This package restores the earlier working Explore menu and removes the full-screen drawer that caused navigation options to become inaccessible on some screens.
+
+The menu again shows eight clear destination tiles: Home, Articles & Stories, BookZone, Watch & Listen, GameZone, Gallery, About and Support. The BookZone free/purchase filters are retained in the site. Member sign-in and account creation remain available in the header.
+
+The existing layered views, Supabase integration, content tables, admin tools, and GameZone games are preserved. No SQL migration is required.
+
+DEPLOY: Extract this ZIP and upload all files at the ZIP root to the existing Netlify site. Replace same-named files. The service-worker cache version has been changed so the browser fetches the corrected files.
