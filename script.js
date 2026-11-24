@@ -285,4 +285,105 @@ window.SUPABASE_ANON_KEY = "sb_publishable_JqIdwv1MwU9uCaVIkMYJ4A_Iae8Xax_";
   }
   document.addEventListener('DOMContentLoaded',setupGameZone);
   if('serviceWorker' in navigator && location.protocol.startsWith('http')) window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(err=>console.debug('Offline cache unavailable',err)));
+})();/* MAGAZINE PUBLISHING MANAGER */
+(() => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const db = window.blogClient;
+    const form = document.getElementById('magazine-form');
+    const list = document.getElementById('magazine-list');
+    if (!db || !form || !list) return;
+
+    const el = id => document.getElementById(id);
+    const status = message => {
+      if (el('magazine-status')) el('magazine-status').textContent = message;
+    };
+
+    async function loadMagazines() {
+      const { data, error } = await db.from('magazines')
+        .select('*').order('created_at', { ascending: false });
+
+      if (error) return status(error.message);
+
+      list.innerHTML = (data || []).map(m => `
+        <div class="admin-item">
+          <div>
+            <strong>${escapeHtml(m.title)}</strong><br>
+            <small>${m.published ? 'Published' : 'Draft'} · ${escapeHtml(m.category || '')}</small>
+          </div>
+          <div class="admin-actions">
+            <button type="button" class="button button-outline button-small" data-edit-mag="${m.id}">Edit</button>
+            <button type="button" class="button button-outline button-small" data-delete-mag="${m.id}">Delete</button>
+          </div>
+        </div>`).join('') || '<p>No magazine issues yet.</p>';
+
+      list.querySelectorAll('[data-edit-mag]').forEach(button => {
+        button.onclick = () => {
+          const m = data.find(item => item.id === button.dataset.editMag);
+          el('magazine-id').value = m.id;
+          el('magazine-title').value = m.title || '';
+          el('magazine-description').value = m.description || '';
+          el('magazine-category').value = m.category || '';
+          el('magazine-cover').value = m.cover_url || '';
+          el('magazine-content').value = m.content_url || '';
+          el('magazine-published').checked = !!m.published;
+          status('Issue loaded for editing.');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+      });
+
+      list.querySelectorAll('[data-delete-mag]').forEach(button => {
+        button.onclick = async () => {
+          if (!confirm('Delete this magazine issue?')) return;
+          const { error } = await db.from('magazines')
+            .delete().eq('id', button.dataset.deleteMag);
+          status(error ? error.message : 'Magazine deleted.');
+          if (!error) loadMagazines();
+        };
+      });
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;',
+        '"': '&quot;', "'": '&#39;'
+      })[char]);
+    }
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      const id = el('magazine-id').value;
+      const payload = {
+        title: el('magazine-title').value.trim(),
+        description: el('magazine-description').value.trim(),
+        category: el('magazine-category').value.trim(),
+        cover_url: el('magazine-cover').value.trim() || null,
+        content_url: el('magazine-content').value.trim(),
+        published: el('magazine-published').checked,
+        published_at: el('magazine-published').checked
+          ? new Date().toISOString() : null
+      };
+
+      status('Saving magazine...');
+      const result = id
+        ? await db.from('magazines').update(payload).eq('id', id)
+        : await db.from('magazines').insert(payload);
+
+      if (result.error) return status(result.error.message);
+
+      form.reset();
+      el('magazine-id').value = '';
+      status('Magazine saved successfully.');
+      loadMagazines();
+    });
+
+    el('magazine-reset')?.addEventListener('click', () => {
+      form.reset();
+      el('magazine-id').value = '';
+      status('');
+    });
+
+    document.querySelector('[data-section="magazines"]')
+      ?.addEventListener('click', loadMagazines);
+  });
 })();
