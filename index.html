@@ -1,234 +1,251 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Thoughts, stories and perspectives on life, creativity and the world around us.">
-  <meta name="theme-color" content="#f7f5ef">
-  <title>Thoughts & Stories — Perspectives worth sharing</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="script.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Thoughts, stories and perspectives on life, creativity and the world around us.">
+<meta name="theme-color" content="#f7f5ef">
+<title>Thoughts & Stories — Perspectives worth sharing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="script.js"></script>
 </head>
 <body>
 
-  <section class="welcome-cover" id="welcome-cover" aria-label="Thoughts and Stories welcome">
-    <button class="cover-theme-toggle" id="cover-theme-toggle" type="button" aria-label="Switch colour theme">☾ <span>Dark mode</span></button>
-    <div class="cover-hero">
-      <div class="cover-bookmark">✦ &nbsp; A HOME FOR WORDS, IDEAS & IMAGINATION &nbsp; ✦</div>
-      <div class="cover-emblem" aria-hidden="true"><span class="emblem-stars">✦　✦　✦</span><svg viewBox="0 0 120 82" role="img" aria-label="Open book logo"><path d="M8 20 Q34 10 58 30 Q84 10 112 20 L112 68 Q84 57 60 76 Q34 57 8 68Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M60 30V76M15 28Q38 20 55 37M105 28Q82 20 65 37" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
-      <h1>Thoughts <span>&amp;</span> Stories</h1>
-      <p class="cover-tagline">Every story begins with a thought.</p>
-      <p class="cover-subtitle">A home for words, ideas and imagination.</p>
-      <p class="cover-motto">Read. Reflect. Share. Discover.</p>
-    </div>
-    <div class="cover-ribbon"><span>▤ &nbsp; Read</span><i></i><span>✒ &nbsp; Write</span><i></i><span>♧ &nbsp; Connect</span><i></i><span>♥ &nbsp; Be Inspired</span></div>
-    <div class="welcome-panel">
-      <div class="welcome-heading">Welcome</div>
-      <p class="welcome-instruction">Choose how you would like to enter <strong>Thoughts &amp; Stories.</strong></p>
-      <div class="entry-grid">
-        <section class="entry-card member-card"><h2>♟ &nbsp; Member Sign In</h2><form id="cover-signin-form"><label for="cover-signin-email">Email address</label><input id="cover-signin-email" type="email" autocomplete="email" required placeholder="Your email address"><label for="cover-signin-password">Password</label><input id="cover-signin-password" type="password" autocomplete="current-password" required placeholder="Your password"><button class="cover-action burgundy-action" type="submit">Sign In &nbsp; →</button><p class="cover-status" id="cover-signin-status" role="status"></p></form></section>
-        <section class="entry-card register-card"><h2>♟+ &nbsp; Create Your Account</h2><form id="cover-signup-form"><label for="cover-username">Choose a username</label><input id="cover-username" required maxlength="60" placeholder="Your username" autocomplete="nickname"><label for="cover-signup-email">Email address</label><input id="cover-signup-email" type="email" required placeholder="Your email address" autocomplete="email"><label for="cover-signup-password">Create a password</label><input id="cover-signup-password" type="password" required minlength="6" placeholder="At least 6 characters" autocomplete="new-password"><button class="cover-action green-action" type="submit">Create Account &nbsp; →</button><p class="cover-status" id="cover-signup-status" role="status"></p></form></section>
-        <section class="entry-card admin-card"><h2>✦ &nbsp; Administrator Access</h2><p class="admin-cover-note">Private access for the site owner.</p><p>Manage stories, books, members, pictures, comments and your publishing space.</p><a class="cover-action blue-action" href="admin.html">Admin Login &nbsp; →</a></section>
-      </div>
-    </div>
-    <div class="cover-footer"><p class="cover-footer-note">Have a story to share? There is a place for your voice here.</p><div class="cover-contact"><a href="mailto:ongwaemoses633@gmail.com">✉ &nbsp;ongwaemoses633@gmail.com</a><a href="https://wa.me/254727276511" target="_blank" rel="noopener"><span class="whatsapp-mark">◉</span> &nbsp; +254 727 276 511</a></div><p class="cover-copyright">© Thoughts &amp; Stories · Read. Reflect. Share. Discover.</p></div>
-  </section>
+<section class="welcome-cover" id="welcome-cover" aria-label="Thoughts and Stories welcome">
+<button class="cover-theme-toggle" id="cover-theme-toggle" type="button">☾ <span>Dark mode</span></button>
+<div class="cover-hero">
+<div class="cover-bookmark">✦ &nbsp; A HOME FOR WORDS, IDEAS & IMAGINATION &nbsp; ✦</div>
+<div class="cover-emblem" aria-hidden="true"><span class="emblem-stars">✦　✦　✦</span><svg viewBox="0 0 120 82"><path d="M8 20 Q34 10 58 30 Q84 10 112 20 L112 68 Q84 57 60 76 Q34 57 8 68Z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M60 30V76M15 28Q38 20 55 37M105 28Q82 20 65 37" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+<h1>Thoughts <span>&amp;</span> Stories</h1>
+<p class="cover-tagline">Every story begins with a thought.</p>
+<p class="cover-subtitle">A home for words, ideas and imagination.</p>
+<p class="cover-motto">Read. Reflect. Share. Discover.</p>
+</div>
+<div class="cover-ribbon"><span>▤ &nbsp; Read</span><i></i><span>✒ &nbsp; Write</span><i></i><span>♧ &nbsp; Connect</span><i></i><span>♥ &nbsp; Be Inspired</span></div>
+<div class="welcome-panel">
+<div class="welcome-heading">Welcome</div>
+<p class="welcome-instruction">Choose how you would like to enter <strong>Thoughts &amp; Stories.</strong></p>
+<div class="entry-grid">
+<section class="entry-card member-card">
+<h2>♟ &nbsp; Member Sign In</h2>
+<form id="cover-signin-form">
+<label for="cover-signin-email">Email address</label>
+<input id="cover-signin-email" type="email" autocomplete="email" required placeholder="Your email address">
+<label for="cover-signin-password">Password</label>
+<input id="cover-signin-password" type="password" autocomplete="current-password" required placeholder="Your password">
+<button class="cover-action burgundy-action" type="submit">Sign In &nbsp; →</button>
+<p class="cover-status" id="cover-signin-status" role="status"></p>
+</form>
+</section>
+<section class="entry-card register-card">
+<h2>♟+ &nbsp; Create Your Account</h2>
+<form id="cover-signup-form">
+<label for="cover-username">Choose a username</label>
+<input id="cover-username" required maxlength="60" placeholder="Your username" autocomplete="nickname">
+<label for="cover-signup-email">Email address</label>
+<input id="cover-signup-email" type="email" required placeholder="Your email address" autocomplete="email">
+<label for="cover-signup-password">Create a password</label>
+<input id="cover-signup-password" type="password" required minlength="6" placeholder="At least 6 characters" autocomplete="new-password">
+<button class="cover-action green-action" type="submit">Create Account &nbsp; →</button>
+<p class="cover-status" id="cover-signup-status" role="status"></p>
+</form>
+</section>
+<section class="entry-card admin-card">
+<h2>✦ &nbsp; Administrator Access</h2>
+<p class="admin-cover-note">Private access for the site owner.</p>
+<p>Manage stories, books, members, pictures, comments and your publishing space.</p>
+<a class="cover-action blue-action" href="admin.html">Admin Login &nbsp; →</a>
+</section>
+</div>
+</div>
+<div class="cover-footer">
+<p class="cover-footer-note">Have a story to share? There is a place for your voice here.</p>
+<div class="cover-contact">
+<a href="mailto:ongwaemoses633@gmail.com">✉ &nbsp;ongwaemoses633@gmail.com</a>
+<a href="https://wa.me/254727276511" target="_blank" rel="noopener"><span class="whatsapp-mark">◉</span> &nbsp; +254 727 276 511</a>
+</div>
+<p class="cover-copyright">© Thoughts &amp; Stories · Read. Reflect. Share. Discover.</p>
+</div>
+</section>
 
-  <div id="member-site" hidden>
-  <header class="site-header" id="top">
-    <a class="brand" href="index.html" aria-label="Thoughts and Stories home">
-      <span class="brand-mark">T.</span><span>thoughts<span class="brand-amp">&</span>stories</span>
-    </a>
-    <div class="discovery-nav">
-      <button class="discover-trigger" id="discover-trigger" type="button" aria-expanded="false" aria-controls="discover-panel"><span class="discover-trigger-icon">✳</span> Explore <span class="discover-chevron">⌄</span></button>
-      <div class="discover-panel" id="discover-panel" hidden>
-        <div class="discover-panel-head"><div><span class="eyebrow">FIND YOUR NEXT STOP</span><h2>Explore the world of ideas.</h2></div><button type="button" id="discover-close" aria-label="Close explore menu">×</button></div>
-        <div class="discover-tiles">
-          <button class="discover-tile tile-home" data-view="home"><span>✦</span><b>Home</b><small>Your starting point</small></button>
-          <button class="discover-tile tile-stories" data-view="stories"><span>✎</span><b>Articles</b><small>Stories & perspectives</small></button>
-          <button class="discover-tile tile-books" data-view="books"><span>▤</span><b>BookZone</b><small>Read and discover</small></button>
-          <button class="discover-tile tile-watch" data-view="watch"><span>▶</span><b>Watch &amp; Listen</b><small>Conversations and videos</small></button>
-          <button class="discover-tile tile-games" data-view="gamezone"><span>🎮</span><b>GameZone</b><small>Play a little</small></button>
-          <button class="discover-tile tile-gallery" data-view="gallery"><span>▧</span><b>Gallery</b><small>Moments in pictures</small></button>
-          <button class="discover-tile tile-about" data-view="about"><span>◎</span><b>About</b><small>The story behind the site</small></button>
-          <button class="discover-tile tile-support" data-view="support"><span>♥</span><b>Support</b><small>Keep ideas growing</small></button>
-        </div>
-        <p class="discover-footnote">One space. Many ways to explore.</p>
-      </div>
-    </div>
-    <div class="header-actions">
-      <button class="button button-outline button-small theme-toggle" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">☾ <span>Dark mode</span></button>
-      <button class="button button-outline button-small" id="account-open">Sign in</button>
-      <button class="button button-dark button-small" id="join-open">Create account</button>
-    </div>
-  </header>
+<div id="member-site" hidden>
+<header class="site-header" id="top">
+<a class="brand" href="index.html" aria-label="Thoughts and Stories home">
+<span class="brand-mark">T.</span><span>thoughts<span class="brand-amp">&</span>stories</span>
+</a>
+<div class="discovery-nav">
+<button class="discover-trigger" id="discover-trigger" type="button" aria-expanded="false" aria-controls="discover-panel"><span class="discover-trigger-icon">✳</span> Explore <span class="discover-chevron">⌄</span></button>
+<div class="discover-panel" id="discover-panel" hidden>
+<div class="discover-panel-head"><div><span class="eyebrow">FIND YOUR NEXT STOP</span><h2>Explore the world of ideas.</h2></div><button type="button" id="discover-close" aria-label="Close explore menu">×</button></div>
+<div class="discover-tiles">
+<button class="discover-tile tile-home" data-view="home"><span>✦</span><b>Home</b><small>Your starting point</small></button>
+<button class="discover-tile tile-stories" data-view="stories"><span>✎</span><b>Articles</b><small>Stories & perspectives</small></button>
+<button class="discover-tile tile-books" data-view="books"><span>▤</span><b>BookZone</b><small>Read and discover</small></button>
+<button class="discover-tile" data-view="magazines"><span>▤</span><b>Magazines</b><small>Explore our editions</small></button>
+<button class="discover-tile tile-watch" data-view="watch"><span>▶</span><b>Watch &amp; Listen</b><small>Conversations and videos</small></button>
+<button class="discover-tile tile-games" data-view="gamezone"><span>🎮</span><b>GameZone</b><small>Play a little</small></button>
+<button class="discover-tile tile-gallery" data-view="gallery"><span>▧</span><b>Gallery</b><small>Moments in pictures</small></button>
+<button class="discover-tile tile-about" data-view="about"><span>◎</span><b>About</b><small>The story behind the site</small></button>
+<button class="discover-tile tile-support" data-view="support"><span>♥</span><b>Support</b><small>Keep ideas growing</small></button>
+</div>
+<p class="discover-footnote">One space. Many ways to explore.</p>
+</div>
+</div>
+<div class="header-actions">
+<button class="button button-outline button-small theme-toggle" id="theme-toggle" type="button">☾ <span>Dark mode</span></button>
+<button class="button button-outline button-small" id="account-open">Sign in</button>
+<button class="button button-dark button-small" id="join-open">Create account</button>
+</div>
+</header>
 
-  <main>
-    <div class="view-switch-bar" id="view-switch-bar" hidden><button type="button" class="button button-outline button-small" data-view="home">← Home</button><span id="current-view-label">Thoughts &amp; Stories</span></div>
-    <section class="hero view-pane" data-view-pane="home">
-      <div class="hero-copy">
-        <p class="eyebrow">A little space for big ideas</p>
-        <h1>Thoughts, stories<br><em>& perspectives.</em></h1>
-        <p class="hero-intro">A place to pause, explore new ideas and share the stories that make us think.</p>
-        <button class="button button-dark" type="button" data-view="stories">Explore the stories <span aria-hidden="true">↗</span></button>
-      </div>
-      <div class="hero-art" aria-label="Abstract illustration of an open book">
-        <div class="sun"></div><div class="book book-back"></div><div class="book book-front"><span>IDEAS<br>IN<br>MOTION</span></div>
-        <span class="art-note note-one">read</span><span class="art-note note-two">reflect</span>
-      </div>
-    </section>
+<main>
+<div class="view-switch-bar" id="view-switch-bar" hidden><button type="button" class="button button-outline button-small" data-view="home">← Home</button><span id="current-view-label">Thoughts &amp; Stories</span></div>
 
-    <section class="intro-strip view-pane" id="about" data-view-pane="home">
-      <span class="eyebrow">WELCOME</span>
-      <p>Curious minds are always welcome here. Find thoughtful reads on everyday life, creativity, learning and everything in between.</p>
-    </section>
+<section class="hero view-pane" data-view-pane="home">
+<div class="hero-copy">
+<p class="eyebrow">A little space for big ideas</p>
+<h1>Thoughts, stories<br><em>& perspectives.</em></h1>
+<p class="hero-intro">A place to pause, explore new ideas and share the stories that make us think.</p>
+<button class="button button-dark" type="button" data-view="stories">Explore the stories <span>↗</span></button>
+</div>
+<div class="hero-art" aria-label="Abstract illustration of an open book">
+<div class="sun"></div><div class="book book-back"></div><div class="book book-front"><span>IDEAS<br>IN<br>MOTION</span></div>
+<span class="art-note note-one">read</span><span class="art-note note-two">reflect</span>
+</div>
+</section>
 
-    <section class="home-discovery view-pane" data-view-pane="home">
-      <div class="home-discovery-heading"><div><p class="eyebrow">A WORLD TO WANDER THROUGH</p><h2>Where will your curiosity take you?</h2></div><span class="discovery-orbit" aria-hidden="true">✳</span></div>
-      <div class="home-discovery-grid">
-        <button class="home-discovery-card discovery-story" data-view="stories"><span class="home-card-kicker">01 · READ</span><strong>Stories that stay with you.</strong><small>Fresh perspectives, reflections and ideas.</small><span class="home-card-arrow">↗</span></button>
-        <button class="home-discovery-card discovery-book" data-view="books"><span class="home-card-kicker">02 · DISCOVER</span><strong>Your next favourite book awaits.</strong><small>Browse free reads and books to purchase.</small><span class="home-card-arrow">↗</span></button>
-        <button class="home-discovery-card discovery-play" data-view="gamezone"><span class="home-card-kicker">03 · PLAY</span><strong>Give your mind a playful break.</strong><small>Five arcade games, ready when you are.</small><span class="home-card-arrow">↗</span></button>
-        <button class="home-discovery-card discovery-watch" data-view="watch"><span class="home-card-kicker">04 · WATCH</span><strong>Ideas beyond the written page.</strong><small>Book talks, videos and conversations.</small><span class="home-card-arrow">↗</span></button>
-      </div>
-    </section>
+<section class="intro-strip view-pane" id="about" data-view-pane="home">
+<span class="eyebrow">WELCOME</span>
+<p>Curious minds are always welcome here. Find thoughtful reads on everyday life, creativity, learning and everything in between.</p>
+</section>
 
-    <section class="member-invitation view-pane" data-view-pane="home">
-      <div><p class="eyebrow">READ · REFLECT · CONNECT</p><h2>Become part of the conversation.</h2><p>Create a free reader account to join discussions and receive a personal reading space.</p></div>
-      <div class="admin-actions"><button class="button button-outline" id="member-signin-cta">Member sign in</button><button class="button button-dark" id="member-join-cta">Create account</button></div>
-    </section>
+<section class="home-discovery view-pane" data-view-pane="home">
+<div class="home-discovery-heading"><div><p class="eyebrow">A WORLD TO WANDER THROUGH</p><h2>Where will your curiosity take you?</h2></div><span class="discovery-orbit">✳</span></div>
+<div class="home-discovery-grid">
+<button class="home-discovery-card discovery-story" data-view="stories"><span class="home-card-kicker">01 · READ</span><strong>Stories that stay with you.</strong><small>Fresh perspectives, reflections and ideas.</small><span class="home-card-arrow">↗</span></button>
+<button class="home-discovery-card discovery-book" data-view="books"><span class="home-card-kicker">02 · DISCOVER</span><strong>Your next favourite book awaits.</strong><small>Browse free reads and books to purchase.</small><span class="home-card-arrow">↗</span></button>
+<button class="home-discovery-card" data-view="magazines"><span class="home-card-kicker">03 · EXPLORE</span><strong>Discover our magazines.</strong><small>Read the latest editions and collections.</small><span class="home-card-arrow">↗</span></button>
+<button class="home-discovery-card discovery-play" data-view="gamezone"><span class="home-card-kicker">04 · PLAY</span><strong>Give your mind a playful break.</strong><small>Five arcade games, ready when you are.</small><span class="home-card-arrow">↗</span></button>
+<button class="home-discovery-card discovery-watch" data-view="watch"><span class="home-card-kicker">05 · WATCH</span><strong>Ideas beyond the written page.</strong><small>Book talks, videos and conversations.</small><span class="home-card-arrow">↗</span></button>
+</div>
+</section>
 
-    <section class="stories-section view-pane" id="latest" data-view-pane="stories">
-      <div class="section-heading">
-        <div><p class="eyebrow">THE JOURNAL</p><h2>Latest stories</h2></div>
-        <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search stories…" aria-label="Search stories"></label>
-      </div>
-      <div class="filter-row" aria-label="Filter stories">
-        <button class="filter-chip selected" data-filter="All">All stories</button>
-        <button class="filter-chip" data-filter="Life">Life</button>
-        <button class="filter-chip" data-filter="Creativity">Creativity</button>
-        <button class="filter-chip" data-filter="Learning">Learning</button>
-      </div>
-      <div class="story-grid" id="story-grid">
-        <article class="story-card featured" data-category="Life" data-search="small moments meaningful life slow down notice everyday">
-          <a class="story-image image-one" href="article.html?id=small-moments" aria-label="Read The beauty of small moments"><span class="image-word">SLOW<br>DOWN</span></a>
-          <div class="story-meta"><span>Life</span><span>5 min read</span></div>
-          <h3><a href="article.html?id=small-moments">The beauty of small moments</a></h3>
-          <p>Sometimes the most meaningful parts of life are the quiet ones we nearly overlook.</p>
-          <a class="read-link" href="article.html?id=small-moments">Read story <span>↗</span></a>
-        </article>
-        <article class="story-card" data-category="Creativity" data-search="creativity begin before ready creative courage">
-          <a class="story-image image-two" href="article.html?id=begin-before-ready" aria-label="Read Begin before you feel ready"><span class="image-word">MAKE<br>ROOM</span></a>
-          <div class="story-meta"><span>Creativity</span><span>4 min read</span></div>
-          <h3><a href="article.html?id=begin-before-ready">Begin before you feel ready</a></h3>
-          <p>Waiting for the perfect moment can keep our best ideas waiting, too.</p>
-          <a class="read-link" href="article.html?id=begin-before-ready">Read story <span>↗</span></a>
-        </article>
-        <article class="story-card" data-category="Learning" data-search="learning curiosity questions grow knowledge">
-          <a class="story-image image-three" href="article.html?id=stay-curious" aria-label="Read A life-long learner's mindset"><span class="image-word">STAY<br>CURIOUS</span></a>
-          <div class="story-meta"><span>Learning</span><span>6 min read</span></div>
-          <h3><a href="article.html?id=stay-curious">A life-long learner's mindset</a></h3>
-          <p>Curiosity turns ordinary days into opportunities to discover something new.</p>
-          <a class="read-link" href="article.html?id=stay-curious">Read story <span>↗</span></a>
-        </article>
-      </div>
-      <p class="empty-state" id="empty-state" hidden>No stories match that search. Try another word.</p>
-    </section>
+<section class="member-invitation view-pane" data-view-pane="home">
+<div><p class="eyebrow">READ · REFLECT · CONNECT</p><h2>Become part of the conversation.</h2><p>Create a free reader account to join discussions and receive a personal reading space.</p></div>
+<div class="admin-actions"><button class="button button-outline" id="member-signin-cta">Member sign in</button><button class="button button-dark" id="member-join-cta">Create account</button></div>
+</section>
 
-    <section class="stories-section view-pane bookzone-view" id="books" data-view-pane="books">
-      <div class="section-heading"><div><p class="eyebrow">THE BOOKSHELF</p><h2>Books & reading</h2></div></div>
-      <p class="bookzone-intro">Discover free online reading and books available to purchase. Open any title to read its details, leave a review or join its book discussion.</p>
-      <div class="bookzone-filters" role="group" aria-label="Filter books">
-        <button class="filter-chip selected" type="button" data-book-filter="all">All books</button>
-        <button class="filter-chip" type="button" data-book-filter="free">Free online books</button>
-        <button class="filter-chip" type="button" data-book-filter="purchase">Books to purchase</button>
-      </div>
-      <div class="story-grid" id="books-grid"><p class="empty-state">Our BookZone is being prepared.</p></div>
-    </section>
+<section class="stories-section view-pane" id="latest" data-view-pane="stories">
+<div class="section-heading">
+<div><p class="eyebrow">THE JOURNAL</p><h2>Latest stories</h2></div>
+<label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Search stories…" aria-label="Search stories"></label>
+</div>
+<div class="filter-row" aria-label="Filter stories">
+<button class="filter-chip selected" data-filter="All">All stories</button>
+<button class="filter-chip" data-filter="Life">Life</button>
+<button class="filter-chip" data-filter="Creativity">Creativity</button>
+<button class="filter-chip" data-filter="Learning">Learning</button>
+</div>
+<div class="story-grid" id="story-grid">
+<article class="story-card featured" data-category="Life" data-search="small moments meaningful life slow down notice everyday">
+<a class="story-image image-one" href="article.html?id=small-moments"><span class="image-word">SLOW<br>DOWN</span></a>
+<div class="story-meta"><span>Life</span><span>5 min read</span></div>
+<h3><a href="article.html?id=small-moments">The beauty of small moments</a></h3>
+<p>Sometimes the most meaningful parts of life are the quiet ones we nearly overlook.</p>
+<a class="read-link" href="article.html?id=small-moments">Read story <span>↗</span></a>
+</article>
+<article class="story-card" data-category="Creativity" data-search="creativity begin before ready creative courage">
+<a class="story-image image-two" href="article.html?id=begin-before-ready"><span class="image-word">MAKE<br>ROOM</span></a>
+<div class="story-meta"><span>Creativity</span><span>4 min read</span></div>
+<h3><a href="article.html?id=begin-before-ready">Begin before you feel ready</a></h3>
+<p>Waiting for the perfect moment can keep our best ideas waiting, too.</p>
+<a class="read-link" href="article.html?id=begin-before-ready">Read story <span>↗</span></a>
+</article>
+<article class="story-card" data-category="Learning" data-search="learning curiosity questions grow knowledge">
+<a class="story-image image-three" href="article.html?id=stay-curious"><span class="image-word">STAY<br>CURIOUS</span></a>
+<div class="story-meta"><span>Learning</span><span>6 min read</span></div>
+<h3><a href="article.html?id=stay-curious">A life-long learner's mindset</a></h3>
+<p>Curiosity turns ordinary days into opportunities to discover something new.</p>
+<a class="read-link" href="article.html?id=stay-curious">Read story <span>↗</span></a>
+</article>
+</div>
+<p class="empty-state" id="empty-state" hidden>No stories match that search. Try another word.</p>
+</section>
 
-    <section class="watch-section view-pane" id="watch" data-view-pane="watch">
-      <div class="watch-heading"><div><p class="eyebrow">WATCH & LISTEN</p><h2>Stories beyond the page.</h2><p>Short book previews, readings and conversations from the Thoughts & Stories bookshelf.</p></div><span class="watch-mark" aria-hidden="true">▶</span></div>
-      <div class="watch-grid">
-        <article class="watch-card watch-book"><span class="watch-icon">▶</span><div><small>BOOK CONVERSATIONS</small><h3>Books in focus</h3><p>Your short introductions, opinions and recommendations about books.</p></div></article>
-        <article class="watch-card watch-reading"><span class="watch-icon">▤</span><div><small>STORY REFLECTIONS</small><h3>Beyond the pages</h3><p>Thoughts, lessons and memorable passages from your reading.</p></div></article>
-        <article class="watch-card watch-notes"><span class="watch-icon">✦</span><div><small>FROM THE AUTHOR</small><h3>Meet the reader and writer</h3><p>Personal video notes and updates from Thoughts &amp; Stories.</p></div></article>
-      </div>
-      <div class="video-station-grid" id="public-video-grid"><p class="empty-state">Your book conversations and video clips will appear here.</p></div>
-      <p class="watch-note">A dedicated station for your own book talks, reviews and story conversations.</p>
-    </section>
+<section class="stories-section view-pane bookzone-view" id="books" data-view-pane="books">
+<div class="section-heading"><div><p class="eyebrow">THE BOOKSHELF</p><h2>Books & reading</h2></div></div>
+<p class="bookzone-intro">Discover free online reading and books available to purchase. Open any title to read its details, leave a review or join its book discussion.</p>
+<div class="bookzone-filters" role="group" aria-label="Filter books">
+<button class="filter-chip selected" type="button" data-book-filter="all">All books</button>
+<button class="filter-chip" type="button" data-book-filter="free">Free online books</button>
+<button class="filter-chip" type="button" data-book-filter="purchase">Books to purchase</button>
+</div>
+<div class="story-grid" id="books-grid"><p class="empty-state">Our BookZone is being prepared.</p></div>
+</section>
 
-    <section class="gamezone-section view-pane" id="gamezone" data-view-pane="gamezone">
-      <div class="gamezone-heading"><div><p class="eyebrow">TAKE A BREAK · HAVE SOME FUN</p><h2>GameZone</h2><p>Five quick arcade favourites. Play with touch controls or your keyboard. Your best scores stay saved on this device.</p></div><div class="gamezone-badge">🎮 <span>ARCADE</span></div></div>
-      <div class="game-picker" role="group" aria-label="Choose a game">
-        <button class="game-choice active" data-game="snake" type="button"><span>🐍</span><b>Snake Rush</b><small>Grow without crashing</small></button>
-        <button class="game-choice" data-game="fruit" type="button"><span>🍉</span><b>Fruit Slice</b><small>Slice fruit, dodge bombs</small></button>
-        <button class="game-choice" data-game="match" type="button"><span>💎</span><b>Jewel Match</b><small>Match three or more</small></button>
-        <button class="game-choice" data-game="blocks" type="button"><span>🧱</span><b>Block Puzzle</b><small>Clear complete lines</small></button>
-        <button class="game-choice" data-game="bubble" type="button"><span>🫧</span><b>Bubble Shooter</b><small>Clear matching bubbles</small></button>
-      </div>
-      <div class="arcade-shell">
-        <div class="arcade-topline"><div><p class="eyebrow" id="arcade-game-label">SNAKE RUSH</p><h3 id="arcade-game-title">Ready to play?</h3></div><div class="arcade-score"><span>SCORE</span><strong id="arcade-score">0</strong><small>BEST <b id="arcade-best">0</b></small></div></div>
-        <div class="arcade-stage"><canvas id="arcade-canvas" width="480" height="480" aria-label="Game playing area"></canvas><div class="arcade-overlay" id="arcade-overlay"><div><span>🎮</span><h3 id="arcade-overlay-title">Pick a game and play</h3><p id="arcade-overlay-copy">Tap Start when you're ready.</p><button class="button button-dark" id="arcade-start" type="button">Start game</button></div></div></div>
-        <div class="arcade-controls"><div class="arcade-actions"><button class="button button-outline" id="arcade-pause" type="button">Pause</button><button class="button button-outline" id="arcade-restart" type="button">Restart</button><button class="button button-outline" id="arcade-sound" type="button" aria-pressed="false">Sound: Off</button></div><div class="arcade-dpad" aria-label="Game direction controls"><button data-dir="up" aria-label="Up">▲</button><div><button data-dir="left" aria-label="Left">◀</button><button data-dir="down" aria-label="Down">▼</button><button data-dir="right" aria-label="Right">▶</button></div></div></div>
-        <p class="arcade-help" id="arcade-help">Use arrow keys or the on-screen controls. Eat the apple and avoid the walls and your tail.</p>
-        <p class="arcade-offline-note">These games run in your browser and do not need an internet connection after this page has loaded. High scores are stored only on this device.</p>
-      </div>
-    </section>
+<section class="stories-section view-pane" id="magazines" data-view-pane="magazines">
+<div class="section-heading"><div><p class="eyebrow">THE LATEST EDITIONS</p><h2>Magazine Shelf</h2><p>Explore published editions from Thoughts &amp; Stories.</p></div></div>
+<div class="magazine-grid" id="public-magazines"><p class="empty-state">Loading magazines...</p></div>
+</section>
 
-    <section class="stories-section view-pane" id="gallery" data-view-pane="gallery"><div class="section-heading"><div><p class="eyebrow">IN PICTURES</p><h2>Photo gallery</h2><p class="form-note">Moments and images shared from Thoughts & Stories.</p></div></div><div class="gallery-grid" id="public-gallery-grid"><p class="empty-state">The gallery is waiting for its first pictures.</p></div></section>
+<section class="watch-section view-pane" id="watch" data-view-pane="watch">
+<div class="watch-heading"><div><p class="eyebrow">WATCH & LISTEN</p><h2>Stories beyond the page.</h2><p>Short book previews, readings and conversations from the Thoughts & Stories bookshelf.</p></div><span class="watch-mark">▶</span></div>
+<div class="watch-grid">
+<article class="watch-card watch-book"><span class="watch-icon">▶</span><div><small>BOOK CONVERSATIONS</small><h3>Books in focus</h3><p>Your short introductions, opinions and recommendations about books.</p></div></article>
+<article class="watch-card watch-reading"><span class="watch-icon">▤</span><div><small>STORY REFLECTIONS</small><h3>Beyond the pages</h3><p>Thoughts, lessons and memorable passages from your reading.</p></div></article>
+<article class="watch-card watch-notes"><span class="watch-icon">✦</span><div><small>FROM THE AUTHOR</small><h3>Meet the reader and writer</h3><p>Personal video notes and updates from Thoughts &amp; Stories.</p></div></article>
+</div>
+<div class="video-station-grid" id="public-video-grid"><p class="empty-state">Your book conversations and video clips will appear here.</p></div>
+<p class="watch-note">A dedicated station for your own book talks, reviews and story conversations.</p>
+</section>
 
-    <section class="intro-strip view-pane" id="about-author" data-view-pane="about">
-      <span class="eyebrow">THE WRITER</span>
-      <p><strong>Saint Musah</strong> — Morara Moses, also known as @s_musah. A space for reflections, ideas, books and stories.</p>
-      <p><a href="mailto:ongwaemoses633@gmail.com">Email</a> · <a href="https://wa.me/254727276511" target="_blank" rel="noopener">WhatsApp</a></p>
-    </section>
+<section class="gamezone-section view-pane" id="gamezone" data-view-pane="gamezone">
+<div class="gamezone-heading"><div><p class="eyebrow">TAKE A BREAK · HAVE SOME FUN</p><h2>GameZone</h2><p>Five quick arcade favourites. Play with touch controls or your keyboard. Your best scores stay saved on this device.</p></div><div class="gamezone-badge">🎮 <span>ARCADE</span></div></div>
+<div class="game-picker" role="group" aria-label="Choose a game">
+<button class="game-choice active" data-game="snake" type="button"><span>🐍</span><b>Snake Rush</b><small>Grow without crashing</small></button>
+<button class="game-choice" data-game="fruit" type="button"><span>🍉</span><b>Fruit Slice</b><small>Slice fruit, dodge bombs</small></button>
+<button class="game-choice" data-game="match" type="button"><span>💎</span><b>Jewel Match</b><small>Match three or more</small></button>
+<button class="game-choice" data-game="blocks" type="button"><span>🧱</span><b>Block Puzzle</b><small>Clear complete lines</small></button>
+<button class="game-choice" data-game="bubble" type="button"><span>🫧</span><b>Bubble Shooter</b><small>Clear matching bubbles</small></button>
+</div>
+<div class="arcade-shell">
+<div class="arcade-topline"><div><p class="eyebrow" id="arcade-game-label">SNAKE RUSH</p><h3 id="arcade-game-title">Ready to play?</h3></div><div class="arcade-score"><span>SCORE</span><strong id="arcade-score">0</strong><small>BEST <b id="arcade-best">0</b></small></div></div>
+<div class="arcade-stage"><canvas id="arcade-canvas" width="480" height="480" aria-label="Game playing area"></canvas><div class="arcade-overlay" id="arcade-overlay"><div><span>🎮</span><h3 id="arcade-overlay-title">Pick a game and play</h3><p id="arcade-overlay-copy">Tap Start when you're ready.</p><button class="button button-dark" id="arcade-start" type="button">Start game</button></div></div></div>
+<div class="arcade-controls"><div class="arcade-actions"><button class="button button-outline" id="arcade-pause" type="button">Pause</button><button class="button button-outline" id="arcade-restart" type="button">Restart</button><button class="button button-outline" id="arcade-sound" type="button" aria-pressed="false">Sound: Off</button></div><div class="arcade-dpad" aria-label="Game direction controls"><button data-dir="up" aria-label="Up">▲</button><div><button data-dir="left" aria-label="Left">◀</button><button data-dir="down" aria-label="Down">▼</button><button data-dir="right" aria-label="Right">▶</button></div></div></div>
+<p class="arcade-help" id="arcade-help">Use arrow keys or the on-screen controls. Eat the apple and avoid the walls and your tail.</p>
+<p class="arcade-offline-note">These games run in your browser and do not need an internet connection after this page has loaded. High scores are stored only on this device.</p>
+</div>
+</section>
 
-    <section class="quote-band view-pane" data-view-pane="about">
-      <p class="eyebrow">A THOUGHT TO KEEP</p>
-      <blockquote>“The world is full of stories. Make room to notice them.”</blockquote>
-    </section>
+<section class="stories-section view-pane" id="gallery" data-view-pane="gallery">
+<div class="section-heading"><div><p class="eyebrow">IN PICTURES</p><h2>Photo gallery</h2><p class="form-note">Moments and images shared from Thoughts & Stories.</p></div></div>
+<div class="gallery-grid" id="public-gallery-grid"><p class="empty-state">The gallery is waiting for its first pictures.</p></div>
+</section>
 
-    <section class="newsletter-section view-pane" id="newsletter" data-view-pane="about">
-      <div><p class="eyebrow">LETTERS FROM THE JOURNAL</p><h2>A thoughtful note,<br><em>now and then.</em></h2></div>
-      <form id="newsletter-form" class="newsletter-form">
-        <label for="newsletter-email">Your email address</label>
-        <div class="email-row"><input id="newsletter-email" type="email" placeholder="you@example.com" required><button class="button button-dark" type="submit">Join the list ↗</button></div>
-        <p class="form-note" id="newsletter-message">Newsletter sign-up is a demo until an email service is connected.</p>
-      </form>
-    </section>
-    <section class="support-view view-pane" id="support-view" data-view-pane="support"><div class="section-heading"><div><p class="eyebrow">KEEP THE STORIES GOING</p><h2>Support Thoughts &amp; Stories</h2><p class="bookzone-intro">Your support helps sustain independent writing, reading and creative conversations.</p></div></div><div id="support-content"><p class="empty-state">Support options are being prepared.</p></div></section>
-    <section class="book-detail-layer" id="book-detail-layer" hidden aria-live="polite">
-      <div class="layer-toolbar"><button class="button button-outline" type="button" id="book-detail-back">← Back to BookZone</button><span class="eyebrow">BOOKZONE · READER SPACE</span></div>
-      <div id="book-detail-content"></div>
-    </section>
-  </main>
+<section class="intro-strip view-pane" id="about-author" data-view-pane="about">
+<span class="eyebrow">THE WRITER</span>
+<p><strong>Saint Musah</strong> — Morara Moses, also known as @s_musah. A space for reflections, ideas, books and stories.</p>
+<p><a href="mailto:ongwaemoses633@gmail.com">Email</a> · <a href="https://wa.me/254727276511" target="_blank" rel="noopener">WhatsApp</a></p>
+</section>
 
-  <footer class="site-footer">
-    <a class="brand" href="index.html"><span class="brand-mark">T.</span><span>thoughts<span class="brand-amp">&</span>stories</span></a>
-    <p>Thoughtful words. Open minds. © <span id="year"></span> · <a href="donate.html">Support this work</a> · <a href="admin.html" id="admin-shortcut" hidden>Admin studio</a></p>
-    <a href="#top" class="back-top">Back to top ↑</a>
-  </footer>
+<section class="quote-band view-pane" data-view-pane="about">
+<p class="eyebrow">A THOUGHT TO KEEP</p>
+<blockquote>“The world is full of stories. Make room to notice them.”</blockquote>
+</section>
 
-  </div>
-  <div class="modal-backdrop" id="account-modal" hidden>
-    <section class="account-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <button class="modal-close" id="modal-close" aria-label="Close">×</button>
-      <p class="eyebrow">YOUR READING SPACE</p>
-      <h2 id="modal-title">Welcome back.</h2>
-      <p class="modal-description" id="modal-description">Sign in or create an account to join the community.</p>
-      <div class="auth-tabs"><button class="auth-tab active" data-mode="signin">Sign in</button><button class="auth-tab" data-mode="signup">Create account</button></div>
-      <form id="auth-form">
-        <label for="auth-email">Email address</label><input id="auth-email" type="email" autocomplete="email" required placeholder="you@example.com">
-        <label for="auth-password">Password</label><input id="auth-password" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters">
-        <button class="button button-dark auth-submit" type="submit" id="auth-submit">Sign in</button>
-        <p class="form-note" id="auth-message" role="status"></p>
-      </form>
-      <p class="privacy-note">Your account is handled securely by Supabase authentication. Never share your password with anyone.</p>
-    </section>
-  </div>
-</body>
-</html>
+<section class="newsletter-section view-pane" id="newsletter" data-view-pane="about">
+<div><p class="eyebrow">LETTERS FROM THE JOURNAL</p><h2>A thoughtful note,<br><em>now and then.</em></h2></div>
+<form id="newsletter-form" class="newsletter-form">
+<label for="newsletter-email">Your email address</label>
+<div class="email-row"><input id="newsletter-email" type="email" placeholder="you@example.com" required><button class="button button-dark" type="submit">Join the list ↗</button></div>
+<p class="form-note" id="newsletter-message">Newsletter sign-up is a demo until an email service is connected.</p>
+</form>
+</section>
+
+<section class="support-view view-pane" id="support-view" data-view-pane="support">
+<div class="section-heading"><div><p class="eyebrow">KEEP THE STORIES GOING</p><h2>Support Thoughts &amp; Stories</h2><p class="bookzone-intro">Your support helps sustain independent writing, reading and creative conversations.</p></div></div>
+<div id="support-content"><p class="empty-s
